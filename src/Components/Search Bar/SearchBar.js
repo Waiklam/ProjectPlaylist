@@ -2,15 +2,16 @@ import React, { useCallback, useState } from "react";
 import "./SearchBar.css";
 
 const SearchBar = (props) => {
-    const [search, setSearch] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
+    const { onSearch } = props;
 
     const handleInput = useCallback((e) => {
-        setSearch(e.target.value);
+        setSearchTerm(e.target.value);
     }, []);
 
     const handleSearch = useCallback(() => {
-        props.onSearch(search);
-    }, [props.onSearch, search]);
+        onSearch(searchTerm);
+    }, [onSearch, searchTerm]);
 
     return (
         <div>
