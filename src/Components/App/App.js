@@ -26,22 +26,51 @@ function App() {
       id: 789
     }
   ]
+
+  const placeholderSearchTracks = [
+    {
+      name: 'what4',
+      artist: 'singer4',
+      album: 'album4',
+      id: 321
+    }, 
+    {
+      name: 'what5',
+      artist: 'singer5',
+      album: 'album5',
+      id: 654
+    }, 
+    {
+      name: 'what6',
+      artist: 'singer6',
+      album: 'album6',
+      id: 987
+    }
+  ]
+
+
   const [playlistName, setPlaylistName] = useState('');
-  const [searchResults, setSearchResults] = useState('');
-  const [playlistTracks, setPlaylistTracks] = useState(placeholderTracks);
+  const [searchResults, setSearchResults] = useState(placeholderSearchTracks);
+  const [playlistTracks, setPlaylistTracks] = useState([]);
 
 
   const search = useCallback((searchTerm) => {
     // search on spotify
-    alert(`searching for ${playlistTracks}!`)
+    alert(`searching for ${searchTerm}!`)
   }, []);
 
   const addTrack = useCallback((track) => {
+    if (playlistTracks.some((savedTrack) => savedTrack.id === track.id))
+        return;
     alert(`${track} added!`)
+    setPlaylistTracks((prevTracks) => [...prevTracks, track]);
   }, [playlistTracks]);
 
   const removeTrack = useCallback((track) => {
     alert(`${track} removed!`)
+    setPlaylistTracks((prevTracks) =>
+      prevTracks.filter((currentTrack) => currentTrack.id !== track.id)
+    );
   }, [playlistTracks]);
 
   const updatePlaylistName = useCallback((name) => {
@@ -49,14 +78,14 @@ function App() {
   }, []);
 
   const savePlaylist = useCallback(() => {
-    alert('saved to Spotify!');
+    alert(`${playlistName} saved to Spotify!`);
   }, [playlistName, playlistTracks])
 
   return (
     <div className="App">
       <SearchBar onSearch={search} />
       <div>
-        <SearchResults SearchResults={searchResults} onAdd={addTrack} />
+        <SearchResults searchResults={searchResults} onAdd={addTrack} />
         <Playlist 
           playlistName={playlistName}
           playlistTracks={playlistTracks}
