@@ -2,13 +2,14 @@ import React, { useCallback } from "react";
 import TrackList from "../TrackList/TrackList";
 
 const Playlist = (props) => {
+    const { onNameChange } = props;
     const handleNameChange = useCallback((e) => {
-        props.onNameChange(e.target.value);
-    }, [props.onNameChange]);
+        onNameChange(e.target.value);
+    }, [onNameChange]);
 
     return (
         <div className="Playlist">
-            <input onChange={handleNameChange} placeholder={'New Playlist'} />
+            <input onChange={handleNameChange} placeholder={'New Playlist'} value={props.playlistName} />
             <button onClick={props.onSave}>Save To Spotify</button>
             <TrackList 
                 tracks={props.playlistTracks} 
