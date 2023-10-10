@@ -13,11 +13,18 @@ const SearchBar = (props) => {
         onSearch(searchTerm);
     }, [onSearch, searchTerm]);
 
+    const handleKeyDown = (e) => {
+        if (e.code === "Enter") {
+            handleSearch();
+        }
+    };
+
     return (
         <div>
             <input
                 onChange={handleInput}
                 placeholder="What are you looking for?"
+                onKeyDown={handleKeyDown}
             />
             <button onClick={handleSearch}>Search</button>
         </div>
