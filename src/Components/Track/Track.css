@@ -1,0 +1,38 @@
+.Track {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-radius: var(--size-radius);
+}
+
+.Track:hover {
+    background-color: lightgray;
+}
+
+.Info_Group {
+    width: 85%;
+}
+
+.Info_Group h1 {
+    font-size: 1rem;
+    color: black;
+}
+
+.Info_Group p {
+    font-size: 1rem;
+    color: black;
+}
+
+.Add_Remove {
+    width: 10%;
+    height: 80%;
+    margin: 2.5%;
+    align-items: center;
+    justify-content: center;
+}
+
+.Add_Remove  button {
+    cursor: pointer;
+}

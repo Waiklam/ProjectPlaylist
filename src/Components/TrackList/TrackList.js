@@ -7,7 +7,7 @@ import Track from "../Track/Track";
 
 const TrackList = (props) => {
     return (
-        <div>
+        <div className="TrackList">
             {props.tracks?.map((track) => {
                 return (
                     <Track 
@@ -18,7 +18,7 @@ const TrackList = (props) => {
                         onRemove={props.onRemove}
                     /> 
                 );
-            })};
+            })}
         </div>
     )
 }

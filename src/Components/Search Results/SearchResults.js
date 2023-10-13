@@ -6,9 +6,11 @@ import TrackList from "../TrackList/TrackList";
 
 const SearchResults = (props) => {
     return (
-        <div>
-            <h2>Results</h2>
-            <TrackList tracks={props.searchResults} onAdd={props.onAdd} />
+        <div className="SearchResults">
+            <div className="Card Overview">
+                <h2 >Results</h2>
+                <TrackList tracks={props.searchResults} onAdd={props.onAdd} />
+            </div>
         </div>
     );
 };

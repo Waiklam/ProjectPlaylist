@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import "./SearchBar.css";
+import "../QOLcode/input.css"
 
 const SearchBar = (props) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -20,13 +21,17 @@ const SearchBar = (props) => {
     };
 
     return (
-        <div>
-            <input
+        <div className="SearchBar">
+            <div className="Card Overview Search">
+                <input
                 onChange={handleInput}
                 placeholder="What are you looking for?"
                 onKeyDown={handleKeyDown}
-            />
-            <button onClick={handleSearch}>Search</button>
+                className="input__field"
+                />
+                <button className="button-group" onClick={handleSearch}>Search</button>
+            </div>
+            
         </div>
     )
 }

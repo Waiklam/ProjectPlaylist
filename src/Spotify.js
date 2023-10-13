@@ -16,7 +16,7 @@ function getAccessToken() {
         accessToken = accessTokenValue[1];
         const expiresIn = Number(expiresInValue[1]);
         window.setTimeout(() => accessToken = '', expiresIn * 1000);
-        window.history.pushState('Access Token', null, '/'); // This clears the parameters, allowing us to grab a new access token when it expires.
+        window.history.pushState('Access Token', null, '/');
         return accessToken;
     } else {
         const accessUrl = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirect_uri}`;

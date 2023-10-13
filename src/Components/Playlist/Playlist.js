@@ -1,5 +1,7 @@
 import React, { useCallback } from "react";
 import TrackList from "../TrackList/TrackList";
+import "../QOLcode/input.css"
+import "./Playlist.css"
 
 const Playlist = (props) => {
     const { onNameChange } = props;
@@ -9,13 +11,22 @@ const Playlist = (props) => {
 
     return (
         <div className="Playlist">
-            <input onChange={handleNameChange} placeholder={'New Playlist'} value={props.playlistName} />
-            <button onClick={props.onSave}>Save To Spotify</button>
-            <TrackList 
+            <div className="Card Overview">
+                <h2>Save to Spotify</h2>
+                <label className="input">
+                    <input className="input__field" onChange={handleNameChange} placeholder={'New Playlist'} value={props.playlistName} />
+                    <span className="input__label">Playlist Name</span>
+                </label>
+                <div className="button-group">
+                    <button onClick={props.onSave}>Save</button>
+                    <button type="reset">Clear</button>
+                </div>
+                <TrackList 
                 tracks={props.playlistTracks} 
                 isRemoval={true}
                 onRemove={props.onRemove}
-            />
+                />
+            </div>
         </div>
     );
 };
