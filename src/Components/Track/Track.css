@@ -36,3 +36,8 @@
 .Add_Remove  button {
     cursor: pointer;
 }
+
+.Album_Image {
+    width: 10%;
+    aspect-ratio: 1/1;
+}

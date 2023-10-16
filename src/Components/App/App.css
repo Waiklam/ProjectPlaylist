@@ -163,3 +163,17 @@ body{
     }
 
 }
+
+*::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #4e54c8;
+    border-radius: 20px;
+    border: 4px solid #ffffff;
+  }

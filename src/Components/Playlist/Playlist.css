@@ -5,3 +5,8 @@
     margin: 2.5%;
     min-height: 150px;
 }
+
+.Save {
+    padding-bottom: 1rem;
+    border-bottom: solid 1px black;
+}

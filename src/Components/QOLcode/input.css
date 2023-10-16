@@ -15,7 +15,10 @@
   color: var(--color-text);
   background: var(--color-background);
   font-weight: 300;
-  min-height: 150px;
+  min-height: 200px;
+  max-height: 750px;
+  overflow-y: scroll;
+  
 }
 
 .Search {

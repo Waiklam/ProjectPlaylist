@@ -8,8 +8,13 @@ const SearchResults = (props) => {
     return (
         <div className="SearchResults">
             <div className="Card Overview">
-                <h2 >Results</h2>
-                <TrackList tracks={props.searchResults} onAdd={props.onAdd} />
+                <div>
+                    <h2 >Results</h2>
+                </div>
+                <TrackList 
+                    tracks={props.searchResults}
+                    onAdd={props.onAdd} 
+                />
             </div>
         </div>
     );

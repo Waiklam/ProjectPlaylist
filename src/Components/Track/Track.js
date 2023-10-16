@@ -25,6 +25,7 @@ const Track = (props) => {
 
     return (
         <div className="Track">
+            <img className="Album_Image" src={props.track.image} alt="Album Cover" />
             <div className="Info_Group">
                 <h1>{props.track.name}</h1>
                 <p>{props.track.artist} | {props.track.album}</p>
@@ -32,7 +33,6 @@ const Track = (props) => {
             <div className="Add_Remove">
                 {renderAction()}
             </div>
-            
         </div>
     )
 }
