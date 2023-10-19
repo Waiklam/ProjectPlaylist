@@ -12,17 +12,22 @@
 }
 
 .Info_Group {
-    width: 85%;
+    width: 80%;
+    padding: 0 2.5%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .Info_Group h1 {
     font-size: 1rem;
     color: black;
+    overflow: hidden;
 }
 
 .Info_Group p {
     font-size: 1rem;
     color: black;
+    overflow: hidden;
 }
 
 .Add_Remove {
@@ -33,11 +38,34 @@
     justify-content: center;
 }
 
-.Add_Remove  button {
+.Add_Remove button {
     cursor: pointer;
 }
 
-.Album_Image {
-    width: 10%;
+.Album {
+    position: relative;
+    width: 15%;
     aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2.5%;
+}
+
+.Preview {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.Preview:hover {
+    opacity: 1;
+}
+
+.Album_Image {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
 }

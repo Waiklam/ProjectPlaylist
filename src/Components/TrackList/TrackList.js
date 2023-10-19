@@ -8,7 +8,7 @@ import Track from "../Track/Track";
 const TrackList = (props) => {
     return (
         <div className="TrackList">
-            {props.tracks?.map((track) => {
+            {props.tracks?.filter((track) => track.preview).map((track) => {
                 return (
                     <Track 
                         track={track}
@@ -17,7 +17,7 @@ const TrackList = (props) => {
                         isRemoval={props.isRemoval}
                         onRemove={props.onRemove}
                     /> 
-                );
+                )
             })}
         </div>
     )

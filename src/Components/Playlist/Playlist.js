@@ -22,7 +22,7 @@ const Playlist = (props) => {
                         <button onClick={props.onSave}>Save</button>
                         <button type="reset">Clear</button>
                     </div>
-                </div>.
+                </div>
                 <TrackList 
                     className="Playlist_Tracks"
                     tracks={props.playlistTracks} 
