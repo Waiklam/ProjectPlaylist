@@ -4,7 +4,7 @@ import React, { useCallback, useState } from 'react';
 import SearchResults from '../Search Results/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import Spotify from '../../Spotify';
-
+import getAccessToken from '../../Authentication';
 
 
 function App() {
@@ -52,11 +52,33 @@ function App() {
     }
   }, [playlistName, playlistTracks])
 
+  const login = useCallback(() => {
+    let accessToken = localStorage.getItem('accessToken');
+    if (accessToken === null) {
+      return (
+        <div className='Login'>
+          <h1>Please Login</h1>
+          <button className='Login_Button' onClick={getAccessToken}>Login</button>
+        </div>
+      )
+    }
+    return (
+      <>
+        <SearchBar className='Search_Section' onSearch={search} /> 
+      </>      
+    )
+  }, [search])
+
+  let hash = window.location.hash;
+  if (hash) {
+    getAccessToken();
+  }
+  
   return (
     <div className='Main'>
       <h1 id="Title">Spotify Playlist Maker!</h1>
       <div className="App">
-        <SearchBar onSearch={search} />
+        {login()}
         <div className='AfterSearch'>
           <SearchResults searchResults={searchResults} onAdd={addTrack} />
           <Playlist 
