@@ -32,7 +32,7 @@ function getAccessToken() {
         return accessToken;
     } else {
         var state = generateRandomString(16);
-        const scope = 'user-read-private user-read-email';
+        const scope = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public';
 
         var url = 'https://accounts.spotify.com/authorize';
         url += '?response_type=token';

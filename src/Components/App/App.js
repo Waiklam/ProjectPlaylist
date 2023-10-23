@@ -1,20 +1,29 @@
 import './App.css';
-import SearchBar from '../Search Bar/SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
 import React, { useCallback, useState } from 'react';
-import SearchResults from '../Search Results/SearchResults';
+import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import Spotify from '../../Spotify';
 import getAccessToken from '../../Authentication';
+import UserPlaylists from '../UserPlaylist/UserPlaylists';
+
 
 
 function App() {
   const [playlistName, setPlaylistName] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [userPlaylists, setUserPlaylists] = useState([]);
+  const [isPlaylist, setIsPlaylist] = useState(false);
 
+  const getPlaylists = useCallback(() => {
+    setIsPlaylist(true);
+    Spotify.getPlaylist().then(setUserPlaylists);
+  }, []);
 
   const search = useCallback((searchTerm) => {
     // search on spotify
+    setIsPlaylist(false);
     Spotify.search(searchTerm).then(setSearchResults);
   }, []);
 
@@ -64,10 +73,10 @@ function App() {
     }
     return (
       <>
-        <SearchBar className='Search_Section' onSearch={search} /> 
+        <SearchBar onSearch={search} onPlaylist={getPlaylists} /> 
       </>      
     )
-  }, [search])
+  }, [search, getPlaylists])
 
   let hash = window.location.hash;
   if (hash) {
@@ -80,7 +89,11 @@ function App() {
       <div className="App">
         {login()}
         <div className='AfterSearch'>
-          <SearchResults searchResults={searchResults} onAdd={addTrack} />
+          <div className='ResultsArea'>
+            { !isPlaylist ? <SearchResults searchResults={searchResults} onAdd={addTrack} /> : null }
+            { isPlaylist ? <UserPlaylists userPlaylists={userPlaylists} /> : null }
+          </div>
+          
           <Playlist 
             playlistName={playlistName}
             playlistTracks={playlistTracks}

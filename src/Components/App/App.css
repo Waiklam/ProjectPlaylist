@@ -49,6 +49,13 @@ body{
   bottom: 50px;
 }
 
+.ResultsArea {
+    width: 40%;
+    min-width: 450px;
+    max-height: 1000px;
+    margin: 2.5%;
+}
+
 .Area {
   z-index: 0;
 }

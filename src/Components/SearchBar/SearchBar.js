@@ -4,7 +4,7 @@ import "../QOLcode/input.css"
 
 const SearchBar = (props) => {
     const [searchTerm, setSearchTerm] = useState('');
-    const { onSearch } = props;
+    const { onSearch, onPlaylist } = props;
 
     const handleInput = useCallback((e) => {
         setSearchTerm(e.target.value);
@@ -20,6 +20,10 @@ const SearchBar = (props) => {
         }
     };
 
+    const handlePlaylists = useCallback(() => {
+        onPlaylist();
+    }, [onPlaylist]);
+
     return (
         <div className="SearchBar">
             <div className="Card Overview Search">
@@ -30,6 +34,7 @@ const SearchBar = (props) => {
                 className="input__field"
                 />
                 <button className="button-group" onClick={handleSearch}>Search</button>
+                <button className="button-group" onClick={handlePlaylists}>Edit Playlists</button>
             </div>
             
         </div>
