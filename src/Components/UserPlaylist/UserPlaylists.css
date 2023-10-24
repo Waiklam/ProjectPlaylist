@@ -1,0 +1,11 @@
+.UserPlaylist {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Playlist_Heading {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}

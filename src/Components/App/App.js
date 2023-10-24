@@ -15,11 +15,22 @@ function App() {
   const [playlistTracks, setPlaylistTracks] = useState([]);
   const [userPlaylists, setUserPlaylists] = useState([]);
   const [isPlaylist, setIsPlaylist] = useState(false);
+  const [addUri, setAddUri] = useState([]);
+  const [removeUri, setRemoveUri] = useState([]);
+  const [playlistId, setPlaylistId] = useState('');
 
   const getPlaylists = useCallback(() => {
     setIsPlaylist(true);
-    Spotify.getPlaylist().then(setUserPlaylists);
+    Spotify.getPlaylists().then(setUserPlaylists);
   }, []);
+
+  const selectPlaylist = useCallback((number) => {
+    const playlistId = userPlaylists[number].id;
+    setPlaylistId(playlistId);
+    setAddUri([]);
+    setRemoveUri([]);
+    Spotify.getPlaylistItems(playlistId).then(setPlaylistTracks);
+  }, [userPlaylists]);
 
   const search = useCallback((searchTerm) => {
     // search on spotify
@@ -31,21 +42,35 @@ function App() {
     if (playlistTracks.some((savedTrack) => savedTrack.id === track.id))
         return;
     // alert(`${track} added!`)
-    setPlaylistTracks((prevTracks) => [...prevTracks, track]);
-  }, [playlistTracks]);
+    setPlaylistTracks((prevTracks) => [track, ...prevTracks]);
+    if (addUri.some((savedTrack) => savedTrack.id === track.id))
+        return;
+    setAddUri((prevTracks) => [...prevTracks, track.uri]);
+  }, [playlistTracks, addUri]);
 
   const removeTrack = useCallback((track) => {
     // alert(`${track} removed!`)
     setPlaylistTracks((prevTracks) =>
       prevTracks.filter((currentTrack) => currentTrack.id !== track.id)
     );
-  }, []);
+    if (removeUri.some((savedTrack) => savedTrack.id === track.id))
+        return;
+    setRemoveUri((prevTracks) => [...prevTracks, track.uri]);
+  }, [removeUri]);
 
   const updatePlaylistName = useCallback((name) => {
     setPlaylistName(name);
   }, []);
 
   const savePlaylist = useCallback(() => {
+    if (playlistId) {
+      Spotify.addToPlaylist(addUri, playlistId);
+      Spotify.removeFromPlaylist(removeUri, playlistId);
+      setAddUri([]);
+      setRemoveUri([]);
+      return;
+    }
+
     if (playlistName && playlistTracks.length > 0) {
       const trackUris = playlistTracks.map((track) => track.uri);
       Spotify.savePlaylist(playlistName, trackUris).then(() => {
@@ -82,18 +107,24 @@ function App() {
   if (hash) {
     getAccessToken();
   }
+
+  const checkUri = useCallback(() => {
+    console.log(playlistId);
+    console.log(removeUri);
+    console.log(addUri);
+  })
   
   return (
     <div className='Main'>
       <h1 id="Title">Spotify Playlist Maker!</h1>
+      <button className='checkButton' onClick={checkUri}>Test</button>
       <div className="App">
         {login()}
         <div className='AfterSearch'>
           <div className='ResultsArea'>
             { !isPlaylist ? <SearchResults searchResults={searchResults} onAdd={addTrack} /> : null }
-            { isPlaylist ? <UserPlaylists userPlaylists={userPlaylists} /> : null }
+            { isPlaylist ? <UserPlaylists userPlaylists={userPlaylists} onSelect={selectPlaylist} /> : null }
           </div>
-          
           <Playlist 
             playlistName={playlistName}
             playlistTracks={playlistTracks}
@@ -104,7 +135,7 @@ function App() {
         </div>      
       </div>
       <div className='Area'>
-        <ul class="circles">
+        <ul className="circles">
           <li></li>
           <li></li>
           <li></li>

@@ -9,6 +9,7 @@
 
 .Track:hover {
     background-color: lightgray;
+    cursor: pointer;
 }
 
 .Info_Group {

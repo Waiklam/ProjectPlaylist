@@ -11,8 +11,7 @@ body{
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
 }
 
-.Test_Button {
-    position: absolute;
+.checkButton {
     z-index: 10000;
 }
 

@@ -13,14 +13,13 @@ const Playlist = (props) => {
         <div className="Playlist">
             <div className="Card Overview">
                 <div className="Save">
-                    <h2>Save to Spotify</h2>
+                    <h2>Creating Playlist</h2>
                     <label className="input">
                         <input className="input__field" onChange={handleNameChange} placeholder={'New Playlist'} value={props.playlistName} />
                         <span className="input__label">Playlist Name</span>
                     </label>
                     <div className="button-group">
                         <button onClick={props.onSave}>Save</button>
-                        <button type="reset">Clear</button>
                     </div>
                 </div>
                 <TrackList 
