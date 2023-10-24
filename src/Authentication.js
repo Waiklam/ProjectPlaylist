@@ -20,13 +20,11 @@ function getAccessToken() {
 
     const accessTokenValue = window.location.href.match(/access_token=([^&]*)/);
     const expiresInValue = window.location.href.match(/expires_in=([^]*)/);
-    console.log(accessTokenValue);
-    console.log(expiresInValue);
 
     if (accessTokenValue && expiresInValue) {
         accessToken = accessTokenValue[1];
         const expiresIn = Number(expiresInValue[1]);
-        window.setTimeout(() => accessToken = '', expiresIn * 1000);
+        window.setTimeout(() => localStorage.removeItem('accessToken'), expiresIn * 1000);
         window.history.pushState('Access Token', null, '/');
         localStorage.setItem('accessToken', accessToken);
         return accessToken;

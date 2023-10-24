@@ -18,6 +18,18 @@ function App() {
   const [addUri, setAddUri] = useState([]);
   const [removeUri, setRemoveUri] = useState([]);
   const [playlistId, setPlaylistId] = useState('');
+  const [userPlaylistName, setUserPlaylistName] = useState('');
+
+  const newPlaylist = useCallback(() => {
+    setPlaylistId('');
+    setPlaylistTracks([]);
+    setIsPlaylist(false);
+    setAddUri([]);
+    setRemoveUri([]);
+    setPlaylistName('');
+    setUserPlaylistName('');
+    return;
+  }, [])
 
   const getPlaylists = useCallback(() => {
     setIsPlaylist(true);
@@ -26,6 +38,8 @@ function App() {
 
   const selectPlaylist = useCallback((number) => {
     const playlistId = userPlaylists[number].id;
+    const name = userPlaylists[number].name;
+    setUserPlaylistName(name);
     setPlaylistId(playlistId);
     setAddUri([]);
     setRemoveUri([]);
@@ -84,7 +98,7 @@ function App() {
     } else if (!playlistName && !playlistTracks.length > 0) {
       alert('Enter a Playlist Name and Add Songs to Playlist!')
     }
-  }, [playlistName, playlistTracks])
+  }, [playlistName, playlistTracks, addUri, removeUri, playlistId])
 
   const login = useCallback(() => {
     let accessToken = localStorage.getItem('accessToken');
@@ -98,10 +112,10 @@ function App() {
     }
     return (
       <>
-        <SearchBar onSearch={search} onPlaylist={getPlaylists} /> 
+        <SearchBar onSearch={search} onPlaylist={getPlaylists} playlistId={playlistId} newPlaylist={newPlaylist} /> 
       </>      
     )
-  }, [search, getPlaylists])
+  }, [search, getPlaylists, playlistId, newPlaylist])
 
   let hash = window.location.hash;
   if (hash) {
@@ -131,6 +145,7 @@ function App() {
             onNameChange={updatePlaylistName}
             onRemove={removeTrack}
             onSave={savePlaylist}
+            userPlaylistName={userPlaylistName}
           />
         </div>      
       </div>

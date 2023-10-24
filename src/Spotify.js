@@ -1,4 +1,3 @@
-
 const Spotify = {
     addToPlaylist(addUri, playlistId) {
         const accessToken = localStorage.getItem('accessToken');
