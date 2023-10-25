@@ -19,6 +19,7 @@ function App() {
   const [removeUri, setRemoveUri] = useState([]);
   const [playlistId, setPlaylistId] = useState('');
   const [userPlaylistName, setUserPlaylistName] = useState('');
+  const [userPlaylistImage, setUserPlaylistImage] = useState('');
 
   const newPlaylist = useCallback(() => {
     setPlaylistId('');
@@ -28,6 +29,7 @@ function App() {
     setRemoveUri([]);
     setPlaylistName('');
     setUserPlaylistName('');
+    setUserPlaylistImage('');
     return;
   }, [])
 
@@ -39,6 +41,8 @@ function App() {
   const selectPlaylist = useCallback((number) => {
     const playlistId = userPlaylists[number].id;
     const name = userPlaylists[number].name;
+    const image = userPlaylists[number].image;
+    setUserPlaylistImage(image);
     setUserPlaylistName(name);
     setPlaylistId(playlistId);
     setAddUri([]);
@@ -104,7 +108,7 @@ function App() {
     let accessToken = localStorage.getItem('accessToken');
     if (accessToken === null) {
       return (
-        <div className='Login'>
+        <div id='Login' className="Card Overview">
           <h1>Please Login</h1>
           <button className='Login_Button' onClick={getAccessToken}>Login</button>
         </div>
@@ -121,33 +125,37 @@ function App() {
   if (hash) {
     getAccessToken();
   }
-
-  const checkUri = useCallback(() => {
-    console.log(playlistId);
-    console.log(removeUri);
-    console.log(addUri);
-  })
   
+  const AfterSearch = useCallback(() => {
+    let accessToken = localStorage.getItem('accessToken');
+    if (accessToken === null) {
+      return;
+    }
+    return (
+      <div className='AfterSearch'>
+        <div className='ResultsArea'>
+          { !isPlaylist ? <SearchResults searchResults={searchResults} onAdd={addTrack} /> : null }
+          { isPlaylist ? <UserPlaylists userPlaylists={userPlaylists} onSelect={selectPlaylist} /> : null }
+        </div>
+        <Playlist 
+          playlistName={playlistName}
+          playlistTracks={playlistTracks}
+          onNameChange={updatePlaylistName}
+          onRemove={removeTrack}
+          onSave={savePlaylist}
+          userPlaylistName={userPlaylistName}
+          userPlaylistImage={userPlaylistImage}
+        />
+      </div>     
+    )
+  })
+
   return (
     <div className='Main'>
       <h1 id="Title">Spotify Playlist Maker!</h1>
-      <button className='checkButton' onClick={checkUri}>Test</button>
       <div className="App">
         {login()}
-        <div className='AfterSearch'>
-          <div className='ResultsArea'>
-            { !isPlaylist ? <SearchResults searchResults={searchResults} onAdd={addTrack} /> : null }
-            { isPlaylist ? <UserPlaylists userPlaylists={userPlaylists} onSelect={selectPlaylist} /> : null }
-          </div>
-          <Playlist 
-            playlistName={playlistName}
-            playlistTracks={playlistTracks}
-            onNameChange={updatePlaylistName}
-            onRemove={removeTrack}
-            onSave={savePlaylist}
-            userPlaylistName={userPlaylistName}
-          />
-        </div>      
+        {AfterSearch()}    
       </div>
       <div className='Area'>
         <ul className="circles">

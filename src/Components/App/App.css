@@ -11,10 +11,6 @@ body{
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
 }
 
-.checkButton {
-    z-index: 10000;
-}
-
 .Main {  
     width: 100%;
     height:100vh;
@@ -31,7 +27,19 @@ body{
   color: whitesmoke;
 }
 
+#Login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background: var(--color-background);
+    padding: 1rem calc(6 * var(--size-bezel));
+    min-height: 100px;
+}
 
+.Login_Button:hover {
+    cursor: pointer;
+}
 
 .App {
   width: 100%;

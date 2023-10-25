@@ -42,6 +42,7 @@ const SearchBar = (props) => {
     return (
         <div className="SearchBar">
             <div className="Card Overview Search">
+                <h1>Search For a Song!</h1>
                 <input
                 onChange={handleInput}
                 placeholder="What are you looking for?"

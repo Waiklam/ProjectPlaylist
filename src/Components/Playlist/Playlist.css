@@ -15,3 +15,16 @@
     padding-top: 1rem;
     padding-bottom: 2rem;
 }
+
+.Save h3 {
+    padding: 1rem;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.Editing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

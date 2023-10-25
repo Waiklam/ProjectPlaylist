@@ -23,8 +23,13 @@ function getAccessToken() {
 
     if (accessTokenValue && expiresInValue) {
         accessToken = accessTokenValue[1];
-        const expiresIn = Number(expiresInValue[1]);
-        window.setTimeout(() => localStorage.removeItem('accessToken'), expiresIn * 1000);
+        const expiresIn = Number(expiresInValue[1].match(/[0-9]+/));
+        console.log(expiresIn)
+        window.setTimeout(() => {
+            accessToken = ''
+            localStorage.removeItem('accessToken');
+            getAccessToken();
+        }, expiresIn * 1000);
         window.history.pushState('Access Token', null, '/');
         localStorage.setItem('accessToken', accessToken);
         return accessToken;

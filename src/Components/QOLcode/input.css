@@ -15,10 +15,9 @@
   color: var(--color-text);
   background: var(--color-background);
   font-weight: 300;
-  min-height: 200px;
+  min-height: 250px;
   max-height: 750px;
   overflow-y: scroll;
-  
 }
 
 .Search {
@@ -36,10 +35,6 @@ h1, h2, h3 {
   border-radius: var(--size-radius);
   border: 3px solid var(--color-shadow, currentColor);
   box-shadow: .5rem .5rem 0 var(--color-shadow, currentColor);
-  
-  *:first-child {
-    margin-top: 0;
-  }
 }
 
 .input {

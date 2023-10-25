@@ -4,7 +4,7 @@ import "../QOLcode/input.css"
 import "./Playlist.css"
 
 const Playlist = (props) => {
-    const { onNameChange, userPlaylistName } = props;
+    const { onNameChange, userPlaylistName, userPlaylistImage } = props;
     const handleNameChange = useCallback((e) => {
         onNameChange(e.target.value);
     }, [onNameChange]);
@@ -12,9 +12,13 @@ const Playlist = (props) => {
     const playlistState = useCallback(() => {
         if (userPlaylistName !== '') {
             return (
-                <div>
-                    <h2>Editing Playlist</h2>
-                    <h3>{userPlaylistName}</h3>
+                <div className="Editing">
+                    <div className="Individual_Playlist">
+                        <div className="Album">
+                            <img className="Album_Image" src={userPlaylistImage} alt="Album Cover" />
+                        </div>
+                        <h1>{userPlaylistName}</h1>
+                    </div>
                 </div>
             )
         }
@@ -27,7 +31,7 @@ const Playlist = (props) => {
                 </label>
             </div>
         )
-    })
+    }, [userPlaylistName, handleNameChange, props.playlistName, userPlaylistImage])
 
     return (
         <div className="Playlist">
