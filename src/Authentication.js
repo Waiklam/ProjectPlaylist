@@ -13,11 +13,6 @@ function generateRandomString(length) {
 }
 
 function getAccessToken() {
-    if (accessToken) {
-        localStorage.setItem('accessToken', accessToken);
-        return accessToken;
-    }
-
     const accessTokenValue = window.location.href.match(/access_token=([^&]*)/);
     const expiresInValue = window.location.href.match(/expires_in=([^]*)/);
 
