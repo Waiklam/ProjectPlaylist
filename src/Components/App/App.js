@@ -148,7 +148,7 @@ function App() {
         />
       </div>     
     )
-  })
+  }, [addTrack, removeTrack, isPlaylist, playlistName, playlistTracks, savePlaylist, searchResults, selectPlaylist, updatePlaylistName, userPlaylistImage, userPlaylistName, userPlaylists])
 
   return (
     <div className='Main'>
