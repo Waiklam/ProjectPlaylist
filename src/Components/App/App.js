@@ -86,6 +86,7 @@ function App() {
       Spotify.removeFromPlaylist(removeUri, playlistId);
       setAddUri([]);
       setRemoveUri([]);
+      alert('Saved Playlist!');
       return;
     }
 
