@@ -20,15 +20,13 @@ function getAccessToken() {
     if (accessTokenValue && expiresInValue) {
         accessToken = accessTokenValue[1];
         const expiresIn = Number(expiresInValue[1].match(/[0-9]+/));
-        console.log(expiresIn)
         window.setTimeout(() => {
             accessToken = ''
             localStorage.removeItem('accessToken');
             getAccessToken();
         }, expiresIn * 1000);
-        window.history.pushState('Access Token', null, '/');
-        localStorage.setItem('accessToken', accessToken);
-        return accessToken;
+        window.history.pushState('Access Token', null, redirect_uri);
+        return localStorage.setItem('accessToken', accessToken);
     } else {
         var state = generateRandomString(16);
         const scope = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public';

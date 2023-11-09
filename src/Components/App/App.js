@@ -22,7 +22,7 @@ function App() {
   const [userPlaylistName, setUserPlaylistName] = useState('');
   const [userPlaylistImage, setUserPlaylistImage] = useState('');
   const [userPlaylistUri, setUserPlaylistUri] = useState('');
-  const accessToken = localStorage.getItem('accessToken');
+  let accessToken = localStorage.getItem('accessToken');
 
   const newPlaylist = useCallback(() => {
     setPlaylistId('');
@@ -111,6 +111,7 @@ function App() {
   }, [playlistName, playlistTracks, addUri, removeUri, playlistId])
 
   const login = useCallback(() => {
+    let accessToken = localStorage.getItem('accessToken');
     if (accessToken === null) {
       return (
         <div id='Login' className="Card Overview">
@@ -124,7 +125,7 @@ function App() {
         <SearchBar onSearch={search} onPlaylist={getPlaylists} playlistId={playlistId} newPlaylist={newPlaylist} /> 
       </>      
     )
-  }, [search, getPlaylists, playlistId, newPlaylist, accessToken])
+  }, [search, getPlaylists, playlistId, newPlaylist])
 
   let hash = window.location.hash;
   if (hash) {
