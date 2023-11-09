@@ -8,4 +8,9 @@
 .Playlist_Heading {
     padding-top: 1rem;
     padding-bottom: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: solid 1px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

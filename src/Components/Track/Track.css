@@ -9,14 +9,13 @@
 
 .Track:hover {
     background-color: lightgray;
-    cursor: pointer;
 }
 
 .Info_Group {
-    width: 80%;
-    padding: 0 2.5%;
+    width: 70%;
     white-space: nowrap;
     overflow: hidden;
+    padding: 0 2.5%;
 }
 
 .Info_Group h1 {
@@ -43,22 +42,11 @@
     cursor: pointer;
 }
 
-.Album {
-    position: relative;
-    width: 15%;
-    aspect-ratio: 1/1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 2.5%;
-}
-
 .Preview {
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    opacity: 0.5;
+    width: 5%;
+    aspect-ratio: 1/1;
     cursor: pointer;
+    margin: 2%;
 }
 
 .Preview:hover {
@@ -66,7 +54,17 @@
 }
 
 .Album_Image {
-    width: 100%;
-    height: 100%;
+    width: 12.5%;
+    aspect-ratio: 1/1;
     opacity: 1;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: black;
 }

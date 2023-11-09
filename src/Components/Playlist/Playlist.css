@@ -8,6 +8,7 @@
 
 .Save {
     padding-bottom: 1rem;
+    margin-bottom: 1rem;
     border-bottom: solid 1px black;
 }
 
@@ -25,6 +26,12 @@
 .Editing {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Link {
+    display: flex;
     justify-content: center;
     align-items: center;
 }

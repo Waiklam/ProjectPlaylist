@@ -12,3 +12,13 @@
     cursor: pointer;
 }
 
+.Playlist_Image {
+    width: 15%;
+    aspect-ratio: 1/1;
+    opacity: 1;
+    padding: 0 2.5%;
+}
+
+.Spacer {
+    padding: 0 2.5%;
+}

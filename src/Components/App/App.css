@@ -21,10 +21,10 @@ body{
 }
 
 #Title {
-  margin-top: 3rem;
-  padding: 2rem;
-  font-size: 3rem;
+  font-size: 3.5rem;
   color: whitesmoke;
+  padding-left: 10px;
+  padding-top: 6px;
 }
 
 #Login {
@@ -196,3 +196,34 @@ body{
     border-radius: 20px;
     border: 4px solid #ffffff;
   }
+
+button {
+z-index: 100;
+} 
+
+.Logout {
+background-color: rgba(30,215,96,255);
+padding: 1rem 2rem;
+border-radius: 6px;
+font-size: 16px;
+}
+
+.Logout:hover {
+text-decoration: underline;
+}
+
+.Heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0 2rem;
+}
+
+.SpotifyLogo {
+    height: 100px;
+}
+
+.Spotify_Icon {
+    width: 12%;
+    aspect-ratio: 1/1;
+}

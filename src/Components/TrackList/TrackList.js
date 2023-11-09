@@ -13,6 +13,8 @@ const TrackList = (props) => {
                     <Track 
                         track={track}
                         key={track.id}
+                        artistUri={track.artistUri}
+                        uri={track.uri}
                         onAdd={props.onAdd}
                         isRemoval={props.isRemoval}
                         onRemove={props.onRemove}

@@ -5,7 +5,7 @@ import pauseButton from "./TrackImages/PauseButton.png";
 
 
 const Track = (props) => {
-    const { onAdd, track, onRemove, isRemoval } = props;
+    const { onAdd, track, onRemove, isRemoval, artistUri, uri } = props;
     
     const addTrack = useCallback((e) => {
         onAdd(track);
@@ -44,14 +44,11 @@ const Track = (props) => {
     
     return (
         <div className="Track">
-            <div className="Album">
-                <img className="Preview" onClick={toggle} src={!playing ? playButton : pauseButton} alt="Play Button" />
-                <img className="Album_Image" src={props.track.image} alt="Album Cover" />
-            </div>
-            
+            <img className="Preview" onClick={toggle} src={!playing ? playButton : pauseButton} alt="Play Button" />
+            <img className="Album_Image" src={props.track.image} alt="Album Cover" />
             <div className="Info_Group">
-                <h1>{props.track.name}</h1>
-                <p>{props.track.artist} | {props.track.album}</p>
+                <h1 title={props.track.name}><a href={uri}>{props.track.name}</a></h1>
+                <p title={props.track.artist}><a href={artistUri}>{props.track.artist}</a></p>
             </div>
             <div className="Add_Remove">
                 {renderAction()}

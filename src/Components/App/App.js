@@ -6,6 +6,7 @@ import Playlist from '../Playlist/Playlist';
 import Spotify from '../../Spotify';
 import getAccessToken from '../../Authentication';
 import UserPlaylists from '../UserPlaylist/UserPlaylists';
+import SpotifyLogo from './SpotifyLogo.png';
 
 
 
@@ -20,6 +21,8 @@ function App() {
   const [playlistId, setPlaylistId] = useState('');
   const [userPlaylistName, setUserPlaylistName] = useState('');
   const [userPlaylistImage, setUserPlaylistImage] = useState('');
+  const [userPlaylistUri, setUserPlaylistUri] = useState('');
+  const accessToken = localStorage.getItem('accessToken');
 
   const newPlaylist = useCallback(() => {
     setPlaylistId('');
@@ -42,8 +45,10 @@ function App() {
     const playlistId = userPlaylists[number].id;
     const name = userPlaylists[number].name;
     const image = userPlaylists[number].image;
+    const uri = userPlaylists[number].uri;
     setUserPlaylistImage(image);
     setUserPlaylistName(name);
+    setUserPlaylistUri(uri);
     setPlaylistId(playlistId);
     setAddUri([]);
     setRemoveUri([]);
@@ -106,7 +111,6 @@ function App() {
   }, [playlistName, playlistTracks, addUri, removeUri, playlistId])
 
   const login = useCallback(() => {
-    let accessToken = localStorage.getItem('accessToken');
     if (accessToken === null) {
       return (
         <div id='Login' className="Card Overview">
@@ -120,7 +124,7 @@ function App() {
         <SearchBar onSearch={search} onPlaylist={getPlaylists} playlistId={playlistId} newPlaylist={newPlaylist} /> 
       </>      
     )
-  }, [search, getPlaylists, playlistId, newPlaylist])
+  }, [search, getPlaylists, playlistId, newPlaylist, accessToken])
 
   let hash = window.location.hash;
   if (hash) {
@@ -128,7 +132,6 @@ function App() {
   }
   
   const AfterSearch = useCallback(() => {
-    let accessToken = localStorage.getItem('accessToken');
     if (accessToken === null) {
       return;
     }
@@ -146,14 +149,25 @@ function App() {
           onSave={savePlaylist}
           userPlaylistName={userPlaylistName}
           userPlaylistImage={userPlaylistImage}
+          userPlaylistUri={userPlaylistUri}
         />
       </div>     
     )
-  }, [addTrack, removeTrack, isPlaylist, playlistName, playlistTracks, savePlaylist, searchResults, selectPlaylist, updatePlaylistName, userPlaylistImage, userPlaylistName, userPlaylists])
+  }, [addTrack, removeTrack, isPlaylist, playlistName, playlistTracks, savePlaylist, searchResults, selectPlaylist, updatePlaylistName, userPlaylistImage, userPlaylistName, userPlaylists, userPlaylistUri, accessToken])
+
+  const Logout = useCallback(() => {
+    window.localStorage.removeItem('accessToken');
+    window.location.reload();
+  }, [])
 
   return (
     <div className='Main'>
-      <h1 id="Title">Spotify Playlist Maker!</h1>
+      <div className='Heading'>
+        <img className='SpotifyLogo' src={SpotifyLogo} alt="Spotify Logo" />
+        <h1 id="Title"> Playlist Maker!</h1>
+      </div>
+      
+      { accessToken ? <button className='Logout' onClick={Logout}>Log Out</button> : '' }
       <div className="App">
         {login()}
         {AfterSearch()}    

@@ -1,10 +1,11 @@
 import React, { useCallback } from "react";
 import TrackList from "../TrackList/TrackList";
+import SpotifyIcon from '../SpotifyIcon.png';
 import "../QOLcode/input.css"
 import "./Playlist.css"
 
 const Playlist = (props) => {
-    const { onNameChange, userPlaylistName, userPlaylistImage } = props;
+    const { onNameChange, userPlaylistName, userPlaylistImage, userPlaylistUri } = props;
     const handleNameChange = useCallback((e) => {
         onNameChange(e.target.value);
     }, [onNameChange]);
@@ -14,10 +15,11 @@ const Playlist = (props) => {
             return (
                 <div className="Editing">
                     <div className="Individual_Playlist">
-                        <div className="Album">
-                            <img className="Album_Image" src={userPlaylistImage} alt="Album Cover" />
-                        </div>
-                        <h1>{userPlaylistName}</h1>
+                        <a className="Link" href={userPlaylistUri}>
+                            <img className="Album_Image Spacer" src={userPlaylistImage} alt="Album Cover" />
+                            <h1 className="Spacer">{userPlaylistName}</h1>
+                            <img className="Spotify_Icon Spacer" src={SpotifyIcon} alt="Spotify Icon"/>
+                        </a>
                     </div>
                 </div>
             )
@@ -31,7 +33,7 @@ const Playlist = (props) => {
                 </label>
             </div>
         )
-    }, [userPlaylistName, handleNameChange, props.playlistName, userPlaylistImage])
+    }, [userPlaylistName, handleNameChange, props.playlistName, userPlaylistImage, userPlaylistUri])
 
     return (
         <div className="Playlist">

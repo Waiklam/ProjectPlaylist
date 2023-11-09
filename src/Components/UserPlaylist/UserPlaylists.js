@@ -1,5 +1,6 @@
 import "./UserPlaylists.css";
 import IndividualPlaylist from "../IndividualPlaylist/InvididualPlaylist";
+import SpotifyIcon from '../SpotifyIcon.png';
 
 const UserPlaylists = (props) => {
         
@@ -7,7 +8,8 @@ const UserPlaylists = (props) => {
         <div className="SearchedPlaylists">
             <div className="Card Overview">
                 <div className="Playlist_Heading">
-                    <h2>Your Playlists</h2>
+                    <img className="Spotify_Icon Spacer" src={SpotifyIcon} alt="Spotify Icon"/>
+                    <h2 className="Spacer">Your Playlists</h2>
                 </div>
                 <div className="UserPlaylist">
                     {props.userPlaylists?.map((playlist, index) => {
