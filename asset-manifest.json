@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/ProjectPlaylist/static/css/main.1bc6dfbc.css",
-    "main.js": "/ProjectPlaylist/static/js/main.190a6331.js",
+    "main.css": "/ProjectPlaylist/static/css/main.dba46ca4.css",
+    "main.js": "/ProjectPlaylist/static/js/main.b89dc392.js",
     "static/js/787.62d5a415.chunk.js": "/ProjectPlaylist/static/js/787.62d5a415.chunk.js",
+    "static/media/SpotifyLogo.png": "/ProjectPlaylist/static/media/SpotifyLogo.0c4ae91bae23217d39c9.png",
+    "static/media/SpotifyIcon.png": "/ProjectPlaylist/static/media/SpotifyIcon.c04871e252f44b22791d.png",
     "static/media/PlayButton.png": "/ProjectPlaylist/static/media/PlayButton.03efde55c36a828c6a36.png",
     "static/media/PauseButton.png": "/ProjectPlaylist/static/media/PauseButton.318489b17a75eca85146.png",
     "index.html": "/ProjectPlaylist/index.html",
-    "main.1bc6dfbc.css.map": "/ProjectPlaylist/static/css/main.1bc6dfbc.css.map",
-    "main.190a6331.js.map": "/ProjectPlaylist/static/js/main.190a6331.js.map",
+    "main.dba46ca4.css.map": "/ProjectPlaylist/static/css/main.dba46ca4.css.map",
+    "main.b89dc392.js.map": "/ProjectPlaylist/static/js/main.b89dc392.js.map",
     "787.62d5a415.chunk.js.map": "/ProjectPlaylist/static/js/787.62d5a415.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1bc6dfbc.css",
-    "static/js/main.190a6331.js"
+    "static/css/main.dba46ca4.css",
+    "static/js/main.b89dc392.js"
   ]
 }
