@@ -44,10 +44,10 @@ const SearchBar = (props) => {
             <div className="Card Overview Search">
                 <h1>Search For a Song!</h1>
                 <input
-                onChange={handleInput}
-                placeholder="What are you looking for?"
-                onKeyDown={handleKeyDown}
-                className="input__field"
+                    onChange={handleInput}
+                    placeholder="What are you looking for?"
+                    onKeyDown={handleKeyDown}
+                    className="input__field"
                 />
                 <button className="button-group" onClick={handleSearch}>Search</button>
                 {handleButton()}

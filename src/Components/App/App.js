@@ -7,6 +7,7 @@ import Spotify from '../../Spotify';
 import getAccessToken from '../../Authentication';
 import UserPlaylists from '../UserPlaylist/UserPlaylists';
 import SpotifyLogo from './SpotifyLogo.png';
+import Volume from './Volume.png';
 
 
 
@@ -22,6 +23,7 @@ function App() {
   const [userPlaylistName, setUserPlaylistName] = useState('');
   const [userPlaylistImage, setUserPlaylistImage] = useState('');
   const [userPlaylistUri, setUserPlaylistUri] = useState('');
+  const [volume, setVolume] = useState(20);
   let accessToken = localStorage.getItem('accessToken');
 
   const newPlaylist = useCallback(() => {
@@ -139,8 +141,13 @@ function App() {
     return (
       <div className='AfterSearch'>
         <div className='ResultsArea'>
-          { !isPlaylist ? <SearchResults searchResults={searchResults} onAdd={addTrack} /> : null }
+          { !isPlaylist ? <SearchResults searchResults={searchResults} onAdd={addTrack} volume={volume} /> : null }
           { isPlaylist ? <UserPlaylists userPlaylists={userPlaylists} onSelect={selectPlaylist} /> : null }
+        </div>
+        <div className="range">
+          <img className='volumeButton' src={Volume}/>
+          <input type="range" value={`${volume}`} min="0" max="100" onChange={handleVolume}/>
+          <p className="rangeValue">{volume}</p>
         </div>
         <Playlist 
           playlistName={playlistName}
@@ -151,14 +158,19 @@ function App() {
           userPlaylistName={userPlaylistName}
           userPlaylistImage={userPlaylistImage}
           userPlaylistUri={userPlaylistUri}
+          volume={volume}
         />
       </div>     
     )
-  }, [addTrack, removeTrack, isPlaylist, playlistName, playlistTracks, savePlaylist, searchResults, selectPlaylist, updatePlaylistName, userPlaylistImage, userPlaylistName, userPlaylists, userPlaylistUri, accessToken])
+  }, [addTrack, removeTrack, isPlaylist, playlistName, playlistTracks, savePlaylist, searchResults, selectPlaylist, updatePlaylistName, userPlaylistImage, userPlaylistName, userPlaylists, userPlaylistUri, accessToken, volume])
 
   const Logout = useCallback(() => {
     window.localStorage.removeItem('accessToken');
     window.location.reload();
+  }, [])
+
+  const handleVolume = useCallback((e) => {
+    setVolume(e.target.value);
   }, [])
 
   return (
@@ -167,7 +179,6 @@ function App() {
         <img className='SpotifyLogo' src={SpotifyLogo} alt="Spotify Logo" />
         <h1 id="Title"> Playlist Maker!</h1>
       </div>
-      
       { accessToken ? <button className='Logout' onClick={Logout}>Log Out</button> : '' }
       <div className="App">
         {login()}

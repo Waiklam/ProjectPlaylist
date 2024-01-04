@@ -15,6 +15,7 @@ const SearchResults = (props) => {
                 <TrackList 
                     tracks={props.searchResults}
                     onAdd={props.onAdd} 
+                    volume={props.volume}
                 />
             </div>
         </div>

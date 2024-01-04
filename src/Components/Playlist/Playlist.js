@@ -5,7 +5,7 @@ import "../QOLcode/input.css"
 import "./Playlist.css"
 
 const Playlist = (props) => {
-    const { onNameChange, userPlaylistName, userPlaylistImage, userPlaylistUri } = props;
+    const { onNameChange, userPlaylistName, userPlaylistImage, userPlaylistUri, volume } = props;
     const handleNameChange = useCallback((e) => {
         onNameChange(e.target.value);
     }, [onNameChange]);
@@ -49,6 +49,7 @@ const Playlist = (props) => {
                     tracks={props.playlistTracks} 
                     isRemoval={true}
                     onRemove={props.onRemove}
+                    volume={props.volume}
                 />
             </div>
         </div>

@@ -5,7 +5,7 @@ import pauseButton from "./TrackImages/PauseButton.png";
 
 
 const Track = (props) => {
-    const { onAdd, track, onRemove, isRemoval, artistUri, uri } = props;
+    const { onAdd, track, onRemove, isRemoval, artistUri, uri, volume } = props;
     
     const addTrack = useCallback((e) => {
         onAdd(track);
@@ -33,7 +33,8 @@ const Track = (props) => {
 
     useEffect(() => {
         playing ? audio.play() : audio.pause();
-    }, [playing, audio])
+        audio.volume = volume/100;
+    }, [playing, audio, volume])
 
     useEffect(() => {
         audio.addEventListener('ended', () => setPlaying(false));
@@ -41,7 +42,7 @@ const Track = (props) => {
             audio.removeEventListener('ended', () => setPlaying(false));
         };
     }, [audio]);
-    
+        
     return (
         <div className="Track">
             <img className="Preview" onClick={toggle} src={!playing ? playButton : pauseButton} alt="Play Button" />
