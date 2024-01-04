@@ -5,7 +5,7 @@ import "../QOLcode/input.css"
 import "./Playlist.css"
 
 const Playlist = (props) => {
-    const { onNameChange, userPlaylistName, userPlaylistImage, userPlaylistUri, volume } = props;
+    const { onNameChange, userPlaylistName, userPlaylistImage, userPlaylistUri } = props;
     const handleNameChange = useCallback((e) => {
         onNameChange(e.target.value);
     }, [onNameChange]);

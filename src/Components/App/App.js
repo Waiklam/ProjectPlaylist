@@ -129,6 +129,10 @@ function App() {
     )
   }, [search, getPlaylists, playlistId, newPlaylist])
 
+  const handleVolume = useCallback((e) => {
+    setVolume(e.target.value);
+  }, [])
+
   let hash = window.location.hash;
   if (hash) {
     getAccessToken();
@@ -145,7 +149,7 @@ function App() {
           { isPlaylist ? <UserPlaylists userPlaylists={userPlaylists} onSelect={selectPlaylist} /> : null }
         </div>
         <div className="range">
-          <img className='volumeButton' src={Volume}/>
+          <img className='volumeButton' src={Volume} alt='volume icon'/>
           <input type="range" value={`${volume}`} min="0" max="100" onChange={handleVolume}/>
           <p className="rangeValue">{volume}</p>
         </div>
@@ -162,15 +166,11 @@ function App() {
         />
       </div>     
     )
-  }, [addTrack, removeTrack, isPlaylist, playlistName, playlistTracks, savePlaylist, searchResults, selectPlaylist, updatePlaylistName, userPlaylistImage, userPlaylistName, userPlaylists, userPlaylistUri, accessToken, volume])
+  }, [addTrack, removeTrack, isPlaylist, playlistName, playlistTracks, savePlaylist, searchResults, selectPlaylist, updatePlaylistName, userPlaylistImage, userPlaylistName, userPlaylists, userPlaylistUri, accessToken, volume, handleVolume])
 
   const Logout = useCallback(() => {
     window.localStorage.removeItem('accessToken');
     window.location.reload();
-  }, [])
-
-  const handleVolume = useCallback((e) => {
-    setVolume(e.target.value);
   }, [])
 
   return (
