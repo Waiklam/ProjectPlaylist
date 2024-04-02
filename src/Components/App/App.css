@@ -9,6 +9,7 @@ body{
     font-family: 'Exo', sans-serif;
     background: #4e54c8;  
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+    display: flex;
 }
 
 .Main {
