@@ -12,8 +12,6 @@ body{
 }
 
 .Main {
-    min-height: 100vh;
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,8 +30,6 @@ body{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    padding: 1rem calc(6 * var(--size-bezel));
-    min-height: 100px;
 }
 
 .Login_Button:hover {
@@ -56,6 +52,12 @@ body{
     margin-top: 100px;
 }
 
+@media (max-width:1045px) {
+	.range {
+        display: none;
+    }
+}
+
 .volumeButton {
     width: 20px;
     height: 20px;
@@ -76,6 +78,7 @@ body{
 
 .AfterSearch {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   justify-content: center;
   bottom: 50px;
@@ -239,6 +242,7 @@ button {
 
 .Heading {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     padding: 3rem 0 2rem;
